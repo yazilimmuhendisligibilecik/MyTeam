@@ -1,4 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:myteam/createuserpage.dart';
+import 'package:myteam/servis/firebaseservis.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -8,8 +11,12 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  TextEditingController _emailcontroller = TextEditingController();
+  TextEditingController _passwordcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    var kullanici = Provider.of<Firebaseservis>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -38,6 +45,7 @@ class _SignInPageState extends State<SignInPage> {
                 width: width * 80 / 100,
                 height: height * 8 / 100,
                 child: TextField(
+                  controller: _emailcontroller,
                   decoration: InputDecoration(
                     hintText: "Kullanıcı Adı",
                     hintStyle: TextStyle(color: Colors.red),
@@ -48,12 +56,14 @@ class _SignInPageState extends State<SignInPage> {
                 ),
               ),
               SizedBox(height: 7),
+              SizedBox(height: 7),
               Container(
                 width: width * 80 / 100,
                 height: height * 8 / 100,
                 child: TextField(
+                  controller: _passwordcontroller,
                   decoration: InputDecoration(
-                    hintText: "Kullanıcı Adı",
+                    hintText: "Şifre",
                     hintStyle: TextStyle(color: Colors.red),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 1.0),
@@ -61,18 +71,21 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 7),
-              Container(
-                width: width * 80 / 100,
-                height: height * 8 / 100,
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Kullanıcı Adı",
-                    hintStyle: TextStyle(color: Colors.red),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red, width: 1.0),
-                    ),
-                  ),
+              GestureDetector(
+                onTap: () {
+                  kullanici.signwithemail(
+                      _emailcontroller.text, _passwordcontroller.text);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.red)),
+                  width: width * 80 / 100,
+                  height: height * 8 / 100,
+                  child: Center(
+                      child: Text(
+                    "Giriş yap",
+                    style: TextStyle(color: Colors.red),
+                  )),
                 ),
               ),
               SizedBox(
@@ -90,7 +103,7 @@ class _SignInPageState extends State<SignInPage> {
                   height: height * 8 / 100,
                   child: Center(
                       child: Text(
-                    "Google",
+                    "Google ile giriş yap",
                     style: TextStyle(color: Colors.red),
                   )),
                 ),
@@ -99,7 +112,12 @@ class _SignInPageState extends State<SignInPage> {
                 height: 29,
               ),
               TextButton(
-                  onPressed: () => null,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateUserPage()));
+                  },
                   child: Text("Hesap Oluştur",
                       style: TextStyle(color: Colors.red))),
             ],
