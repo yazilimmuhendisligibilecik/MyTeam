@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:myteam/servis/firebaseservis.dart';
+import 'package:myteam/tabsayfalari/anasayfa.dart';
+import 'package:myteam/tabsayfalari/kategori.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,22 +12,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentindex = 0;
+  List<Widget> widgetlar = [
+    Anasayfa(),
+    Kategori(),
+  ];
   @override
   Widget build(BuildContext context) {
     var kullanici = Provider.of<Firebaseservis>(context);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () async {
-              await kullanici.signout();
-            },
-            child: Text("Çıkış Yap"),
+    return Scaffold(    
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: CircleAvatar(
+                child: Text("AA"),
+              )),
+              ListTile(
+                title: Text("Profilim"),
+              ),
+              ListTile(
+                title: Text("Bilgilerim"),
+              ),
+              ListTile(
+                title: Text("Çıkış yap"),
+                onTap: ()async{
+                 await kullanici.signout();
+                },
+              ),
+          ],
+        ),
+      ), 
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            currentindex = index;
+          });
+        },
+        currentIndex: currentindex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: "Kategoriler",
           ),
-          Center(child: Text("HomePage")),
         ],
       ),
+      body: widgetlar[currentindex],
     );
   }
 }
