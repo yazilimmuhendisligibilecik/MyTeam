@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:myteam/servis/firebaseservis.dart';
+import 'package:myteam/tabsayfalari/components/ilanonizleme.dart';
 import 'package:provider/provider.dart';
 
 class Anasayfa extends StatefulWidget {
@@ -13,18 +14,32 @@ class _AnasayfaState extends State<Anasayfa> {
   @override
   Widget build(BuildContext context) {
     var kullanici = Provider.of<Firebaseservis>(context);
-    return Center(
-      child: Column(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(title: Text("My Team")),
+      body: Column(
         children: [
-          Container(
-             child: Text("ANasasyfaa"),
+          SizedBox(
+            height: height * 2 / 100,
           ),
-          ElevatedButton(
-            onPressed: () async {
-              await kullanici.signout();
-            },
-            child: Text("Çıkış Yap"),
+          Center(
+            child: Container(
+              width: width * 85 / 100,
+              height: height * 7 / 100,
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(18)),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Search",
+                    contentPadding: EdgeInsets.only(left: width * 36 / 100)),
+              ),
+            ),
           ),
+          SizedBox(
+            height: height * 5 / 100,
+          ),
+          Ilanonizleme(width: width),
         ],
       ),
     );
