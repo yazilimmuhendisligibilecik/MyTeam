@@ -19,7 +19,6 @@ class _IlanDetayState extends State<IlanDetay> {
         height: height,
         child: Column(
           children: [
-<<<<<<< Updated upstream
             Container(
               width: width,
               height: height * 23 / 100,
@@ -115,55 +114,6 @@ class _IlanDetayState extends State<IlanDetay> {
                 ],
               ),
             )
-=======
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Text("22/06/2020"),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Başvuru yap"),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: height * 3 / 100,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Text("İlan Başlığı"),
-              SizedBox(
-                width: width * 4 / 100,
-              ),
-              SizedBox(),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("Favoriye ekle"),
-              ),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Text("Aranan yetenekler"),
-              SizedBox(
-                width: width * 4 / 100,
-              ),
-              SizedBox(),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("Mesaj gönder"),
-              ),
-            ]),
->>>>>>> Stashed changes
           ],
         ),
       ),
