@@ -17,30 +17,48 @@ class _AnasayfaState extends State<Anasayfa> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(title: Text("My Team")),
-      body: Column(
-        children: [
-          SizedBox(
-            height: height * 2 / 100,
+      appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: Icon(Icons.menu),
           ),
-          Center(
-            child: Container(
-              width: width * 85 / 100,
-              height: height * 7 / 100,
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(18)),
-              child: TextField(
-                decoration: InputDecoration(
-                    hintText: "Search",
-                    contentPadding: EdgeInsets.only(left: width * 36 / 100)),
+          title: Text("My Team")),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * 2 / 100,
+            ),
+            Center(
+              child: Container(
+                width: width * 85 / 100,
+                height: height * 7 / 100,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(18)),
+                child: TextField(
+                  decoration: InputDecoration(
+                      hintText: "Search",
+                      contentPadding: EdgeInsets.only(left: width * 36 / 100)),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: height * 5 / 100,
-          ),
-          Ilanonizleme(width: width),
-        ],
+            SizedBox(
+              height: height * 5 / 100,
+            ),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+            Ilanonizleme(width: width),
+          ],
+        ),
       ),
     );
   }

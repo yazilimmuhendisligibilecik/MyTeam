@@ -96,6 +96,9 @@ class _SignInPageState extends State<SignInPage> {
                 height: 13,
               ),
               GestureDetector(
+                onTap: () {
+                  kullanici.signwithgoogle();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(width: 1, color: Colors.red)),

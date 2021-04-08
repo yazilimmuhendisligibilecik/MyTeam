@@ -13,27 +13,35 @@ class Ilanonizleme extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>IlanDetay()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => IlanDetay()));
       },
-      child: Container(
-        width: width * 80 / 100,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              Center(child: Text("Proje Adı")),
-              ListTile(
-                leading: CircleAvatar(child: Text("AA")),
-                title: Text("Yetenekler"),
+      child: Column(
+        children: [
+          Container(
+            width: width * 80 / 100,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              ListTile(
-                trailing: Text("Son 4 kişi "),
+              child: Column(
+                children: [
+                  Center(child: Text("Proje Adı")),
+                  ListTile(
+                    leading: CircleAvatar(child: Text("AA")),
+                    title: Text("Yetenekler"),
+                  ),
+                  ListTile(
+                    trailing: Text("Son 4 kişi "),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          SizedBox(
+            height: 30,
+          ),
+        ],
       ),
     );
   }
