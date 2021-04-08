@@ -19,7 +19,6 @@ class _IlanDetayState extends State<IlanDetay> {
         height: height,
         child: Column(
           children: [
-<<<<<<< Updated upstream
             Container(
               width: width,
               height: height * 23 / 100,
@@ -115,7 +114,7 @@ class _IlanDetayState extends State<IlanDetay> {
                 ],
               ),
             )
-=======
+
             Row(
               children: [
                 Padding(
@@ -163,7 +162,6 @@ class _IlanDetayState extends State<IlanDetay> {
                 child: Text("Mesaj gönder"),
               ),
             ]),
->>>>>>> Stashed changes
           ],
         ),
       ),

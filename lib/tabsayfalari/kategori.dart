@@ -12,7 +12,6 @@ class _KategoriState extends State<Kategori> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-<<<<<<< Updated upstream
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -149,7 +148,7 @@ Column(
         ),
       ],
     ); */
-=======
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -183,4 +182,4 @@ Column(
     );
   }
 }
->>>>>>> Stashed changes
+
