@@ -119,6 +119,7 @@ class _IlanDetayState extends State<IlanDetay> {
             SizedBox(
               height: 15,
             ),
+            //deneme
             Container(
               width: width * 85 / 100,
               height: height * 25 / 100,
