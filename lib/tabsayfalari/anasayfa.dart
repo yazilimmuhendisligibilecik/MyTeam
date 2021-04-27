@@ -13,6 +13,18 @@ class Anasayfa extends StatefulWidget {
 }
 
 class _AnasayfaState extends State<Anasayfa> {
+  TextEditingController _search = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _search.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var kullanici = Provider.of<Firebaseservis>(context);
@@ -39,6 +51,9 @@ class _AnasayfaState extends State<Anasayfa> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(18)),
               child: TextField(
+                onChanged: (value) {
+                 
+                },
                 decoration: InputDecoration(
                     hintText: "Search",
                     contentPadding: EdgeInsets.only(left: width * 36 / 100)),
@@ -51,7 +66,7 @@ class _AnasayfaState extends State<Anasayfa> {
           Flexible(
             child: StreamBuilder<List<Ilanlar>>(
                 stream: kullanici.ilanlarigetir(),
-                builder: (context, snapshot) {
+                builder: (context, snapshot) {               
                   if (!snapshot.hasData) {
                     return Center(
                       child: CircularProgressIndicator(),
@@ -89,17 +104,15 @@ class _AnasayfaState extends State<Anasayfa> {
                                   child: Column(
                                     children: [
                                       Center(
-                                          child: Text(veri
-                                              .ilanadi
-                                              .toUpperCase())),
+                                          child:
+                                              Text(veri.ilanadi.toUpperCase())),
                                       ListTile(
                                         leading: CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              veri.profilurl),
+                                          backgroundImage:
+                                              NetworkImage(veri.profilurl),
                                         ),
-                                        trailing: Text("Son " +
-                                            veri.kisisayi +
-                                            " kişi"),
+                                        trailing: Text(
+                                            "Son " + veri.kisisayi + " kişi"),
                                       ),
                                     ],
                                   ),

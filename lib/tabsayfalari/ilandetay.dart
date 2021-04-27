@@ -74,7 +74,7 @@ class _IlanDetayState extends State<IlanDetay> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 20),
+                          padding: const EdgeInsets.only(left: 30, top: 40),
                           child: Text(
                             widget.ilanadi,
                             style: TextStyle(fontSize: 26),

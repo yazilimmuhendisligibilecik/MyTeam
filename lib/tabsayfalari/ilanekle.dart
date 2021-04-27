@@ -11,6 +11,7 @@ class IlanEkle extends StatefulWidget {
 }
 
 class _IlanEkleState extends State<IlanEkle> {
+  var secilen;
   TextEditingController _projeadcontroller = TextEditingController();
   TextEditingController _yetenekcontroller = TextEditingController();
   TextEditingController _aciklamacontroller = TextEditingController();
@@ -52,7 +53,7 @@ class _IlanEkleState extends State<IlanEkle> {
               ),
             ),
             SizedBox(height: height * 4 / 100),
-            Container(
+            /*Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.red),
                 color: Colors.blue[200],
@@ -67,6 +68,34 @@ class _IlanEkleState extends State<IlanEkle> {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "İstenen Yetenekleri Giriniz."),
+              ),
+            ),*/
+            Container(
+              width: width * 37 / 100,
+              height: height * 5 / 100,
+              child: DropdownButton<String>(
+                onChanged: (value) {
+                  setState(() {
+                    secilen = value;
+                  });
+                },
+                value: secilen,
+                hint: Text("Yetenek seçin"),
+                items: <String>[
+                  'Flutter',
+                  'Java',
+                  'C#',
+                  'C',
+                  'Python',
+                  'Visual Basic',
+                  'Php',
+                  'C++'
+                ].map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(value),
+                  );
+                }).toList(),
               ),
             ),
             SizedBox(height: height * 6 / 100),
@@ -117,7 +146,7 @@ class _IlanEkleState extends State<IlanEkle> {
                   aciklama: _aciklamacontroller.text,
                   ilanadi: _projeadcontroller.text,
                   kisisayi: _kisisayicontroller.text,
-                  yetenekler: _yetenekcontroller.text,
+                  yetenekler: secilen,
                   profilurl: kullanici.user.profilfoto,
                 );
                 await kullanici.ilanekle(ilan);

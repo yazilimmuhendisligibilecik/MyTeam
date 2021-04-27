@@ -10,6 +10,7 @@ class Firebaseservis extends ChangeNotifier {
   FirebaseFirestore _store = FirebaseFirestore.instance;
   Usermodel _usermodel;
   Usermodel get user => _usermodel;
+  List veriler;
 
   Firebaseservis() {
     currentuser();
@@ -23,7 +24,7 @@ class Firebaseservis extends ChangeNotifier {
     return Usermodel(userID: user.uid, email: user.email);
   }
 
-  currentuser() async{
+  currentuser() async {
     var kullanici = _auth.currentUser;
     _usermodel = _userfromfirebase(kullanici);
     if (_usermodel != null) {
@@ -108,7 +109,7 @@ class Firebaseservis extends ChangeNotifier {
     notifyListeners();
   }
   // ___________________________--------------------__________________
-  
+
   Future verilerikaydet(Usermodel usermodel) async {
     await _store
         .collection("users")
@@ -124,20 +125,31 @@ class Firebaseservis extends ChangeNotifier {
     print(veriler.toString());
     return veriler;
   }
-   
-   Future ilanekle(Ilanlar ilan)async{
+
+  Future ilanekle(Ilanlar ilan) async {
     var id = _store.collection("ilanlar").doc().id;
     _store.collection("ilanlar").doc(id).set(ilan.toMap());
-   }
+  }
 
-   
   Stream<List<Ilanlar>> ilanlarigetir() {
     //Anasayfa için
     Stream<QuerySnapshot> ilanlar = _store.collection("ilanlar").snapshots();
 
     var yeniilan = ilanlar.map((ilanliste) =>
         ilanliste.docs.map((e) => Ilanlar.toObj(e.data())).toList());
+    
     return yeniilan;
   }
 
+
+  Stream kategorigetir(String kategori) {
+    var gelenkategori = _store
+        .collection("ilanlar")
+        .where("yetenekler", isEqualTo: kategori)
+        .snapshots();
+
+    var yeniilan = gelenkategori.map((ilanliste) =>
+        ilanliste.docs.map((e) => Ilanlar.toObj(e.data())).toList());
+    return yeniilan;
+  }
 }

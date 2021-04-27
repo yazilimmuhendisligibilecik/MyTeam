@@ -28,8 +28,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             DrawerHeader(
               child: CircleAvatar(
-                backgroundImage: NetworkImage(kullanici.user.profilfoto),
-
+                child: Text("AA"),
               )),
               ListTile(
                 title: Text("Profilim"),
