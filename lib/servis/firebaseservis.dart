@@ -2,15 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:myteam/modeller/ilanlar.dart';
 import 'package:myteam/modeller/usermodel.dart';
 
 class Firebaseservis extends ChangeNotifier {
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore _store = FirebaseFirestore.instance;
   Usermodel _usermodel;
-  Usermodel get user => _usermodel;
-  List veriler;
+  get user => _usermodel;
 
   Firebaseservis() {
     currentuser();
@@ -21,19 +19,12 @@ class Firebaseservis extends ChangeNotifier {
     if (user == null) {
       return null;
     }
-    return Usermodel(userID: user.uid, email: user.email);
+    return Usermodel(userID: user.uid);
   }
 
-  currentuser() async {
+  currentuser() {
     var kullanici = _auth.currentUser;
     _usermodel = _userfromfirebase(kullanici);
-    if (_usermodel != null) {
-      DocumentSnapshot kimlik =
-          await _store.collection("users").doc(_usermodel.userID).get();
-      Map gelendata = kimlik.data();
-      _usermodel = Usermodel.toObj(gelendata);
-    }
-    notifyListeners();
   }
 
   Future<Usermodel> createwithemail(String email, String password) async {
@@ -42,8 +33,6 @@ class Firebaseservis extends ChangeNotifier {
           email: email, password: password);
 
       _usermodel = _userfromfirebase(user.user);
-      await verilerikaydet(_usermodel);
-      _usermodel = await verilerioku(_usermodel);
       notifyListeners();
       return _usermodel;
     } catch (e) {
@@ -57,7 +46,6 @@ class Firebaseservis extends ChangeNotifier {
       UserCredential user = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       _usermodel = _userfromfirebase(user.user);
-      _usermodel = await verilerioku(_usermodel);
       notifyListeners();
       return _usermodel;
     } catch (e) {
@@ -80,15 +68,15 @@ class Firebaseservis extends ChangeNotifier {
                   idToken: _googleauth.idToken));
           User _userg = userx.user;
           _usermodel = _userfromfirebase(_userg);
-          QuerySnapshot sonuc = await _store
+          /* QuerySnapshot sonuc = await _dbservis
               .collection("users")
               .where("email", isEqualTo: _usermodel.email)
-              .get();
-          if (sonuc.docs.length < 1) {
+              .get(); */
+          /* if (sonuc.docs.length < 1) {
             await verilerikaydet(_usermodel);
-          }
-          _usermodel = await verilerioku(_usermodel);
-
+          }*/
+          // _usermodel = await verilerioku(_usermodel);
+          //
           notifyListeners();
           return _usermodel;
         } else {
@@ -108,48 +96,6 @@ class Firebaseservis extends ChangeNotifier {
     _usermodel = null;
     notifyListeners();
   }
-  // ___________________________--------------------__________________
 
-  Future verilerikaydet(Usermodel usermodel) async {
-    await _store
-        .collection("users")
-        .doc(usermodel.userID)
-        .set(usermodel.toMap());
-  }
-
-  Future verilerioku(Usermodel myusermodel) async {
-    DocumentSnapshot kimlik =
-        await _store.collection("users").doc(myusermodel.userID).get();
-    Map gelendata = kimlik.data();
-    var veriler = Usermodel.toObj(gelendata);
-    print(veriler.toString());
-    return veriler;
-  }
-
-  Future ilanekle(Ilanlar ilan) async {
-    var id = _store.collection("ilanlar").doc().id;
-    _store.collection("ilanlar").doc(id).set(ilan.toMap());
-  }
-
-  Stream<List<Ilanlar>> ilanlarigetir() {
-    //Anasayfa için
-    Stream<QuerySnapshot> ilanlar = _store.collection("ilanlar").snapshots();
-
-    var yeniilan = ilanlar.map((ilanliste) =>
-        ilanliste.docs.map((e) => Ilanlar.toObj(e.data())).toList());
-    
-    return yeniilan;
-  }
-
-
-  Stream kategorigetir(String kategori) {
-    var gelenkategori = _store
-        .collection("ilanlar")
-        .where("yetenekler", isEqualTo: kategori)
-        .snapshots();
-
-    var yeniilan = gelenkategori.map((ilanliste) =>
-        ilanliste.docs.map((e) => Ilanlar.toObj(e.data())).toList());
-    return yeniilan;
-  }
+ 
 }
