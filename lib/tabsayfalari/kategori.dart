@@ -96,9 +96,9 @@ class Griditem extends StatelessWidget {
           color: itemcolor,
           child: Center(
               child: Text(
-                itemname,
-                style: TextStyle(fontSize: 22),
-              ))),
+            itemname,
+            style: TextStyle(fontSize: 22),
+          ))),
     );
   }
 }
@@ -148,3 +148,38 @@ Column(
         ),
       ],
     ); */
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            color: Colors.green,
+            width: width,
+            height: height * 40 / 100,
+            child: Center(child: Text("ÜST KISIM")),
+          ),
+          Container(
+            width: width,
+            height: 500,
+            child: GridView.builder(
+              itemCount: 20,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: width * 21 / 100,
+                  mainAxisSpacing: height * 15 / 100,
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    color: Colors.red,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
