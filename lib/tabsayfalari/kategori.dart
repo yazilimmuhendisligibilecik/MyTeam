@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:get/get.dart';
+import 'package:myteam/tabsayfalari/kategoridetay.dart';
 
 class Kategori extends StatefulWidget {
   Kategori({Key key}) : super(key: key);
@@ -35,41 +37,117 @@ class _KategoriState extends State<Kategori> {
               crossAxisSpacing: 20,
               mainAxisSpacing: 30,
               children: [
-                Griditem(
-                  itemcolor: Colors.blue,
-                  itemname: "Flutter",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "Flutter",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "Flutter",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.orange,
-                  itemname: "Java",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "Java",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "Java",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.blueGrey[400],
-                  itemname: "C#",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "C#",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "C#",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.yellow,
-                  itemname: "Python",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "Python",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "Python",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.red,
-                  itemname: "PHP",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "Php",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "Php",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.brown,
-                  itemname: "Visual Basic",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "Visual Basic",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "Visual Basic",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.indigo,
-                  itemname: "C",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "C",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "C",
+                  ),
                 ),
-                Griditem(
-                  itemcolor: Colors.amber,
-                  itemname: "C++",
-                ),
-                Griditem(
-                  itemcolor: Colors.purple,
-                  itemname: "Go",
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => KategoriDetay(
+                                  kategori: "C++",
+                              )));
+                  },
+                  child: Griditem(
+                    itemcolor: Colors.blue,
+                    itemname: "C++",
+                  ),
                 ),
               ],
               crossAxisCount: 2),
@@ -148,7 +226,7 @@ Column(
         ),
       ],
     ); */
-
+/*
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -182,4 +260,4 @@ Column(
     );
   }
 }
-
+*/

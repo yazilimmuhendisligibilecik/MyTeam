@@ -1,7 +1,23 @@
 import "package:flutter/material.dart";
+import 'package:myteam/servis/firebaseservis.dart';
+import 'package:provider/provider.dart';
 
 class IlanDetay extends StatefulWidget {
-  IlanDetay({Key key}) : super(key: key);
+  String aciklama;
+  String deneyim;
+  String ilanadi;
+  String kisisayi;
+  String profilurl;
+  DateTime tarih;
+  IlanDetay(
+      {Key key,
+      this.aciklama,
+      this.deneyim,
+      this.ilanadi,
+      this.kisisayi,
+      this.profilurl,
+      this.tarih})
+      : super(key: key);
 
   @override
   _IlanDetayState createState() => _IlanDetayState();
@@ -10,6 +26,7 @@ class IlanDetay extends StatefulWidget {
 class _IlanDetayState extends State<IlanDetay> {
   @override
   Widget build(BuildContext context) {
+    var kullanici = Provider.of<Firebaseservis>(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -31,24 +48,35 @@ class _IlanDetayState extends State<IlanDetay> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 28, left: 28),
-                          child: Text("Tarihxxx"),
+                          child: Column(
+                            children: [
+                              Text(widget.tarih.day.toString() +
+                                  "/" +
+                                  widget.tarih.month.toString() +
+                                  "/" +
+                                  widget.tarih.year.toString()),
+                              Text(widget.tarih.hour.toString() +
+                                  ":" +
+                                  widget.tarih.minute.toString()),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 25, top: 20),
                           child: Row(
                             children: [
                               CircleAvatar(
-                                child: Text("R"),
+                                backgroundImage: NetworkImage(widget.profilurl),
                               ),
                               SizedBox(width: 7),
-                              Text("Username"),
+                              Text("email"),
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 30, top: 40),
                           child: Text(
-                            "Proje Adı ",
+                            widget.ilanadi,
                             style: TextStyle(fontSize: 26),
                           ),
                         ),
@@ -85,12 +113,13 @@ class _IlanDetayState extends State<IlanDetay> {
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("a"),
+                child: Text(widget.deneyim),
               ),
             ),
             SizedBox(
               height: 15,
             ),
+            //deneme
             Container(
               width: width * 85 / 100,
               height: height * 25 / 100,
@@ -99,7 +128,7 @@ class _IlanDetayState extends State<IlanDetay> {
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("b"),
+                child: Text(widget.aciklama),
               ),
             ),
             Container(
@@ -109,59 +138,13 @@ class _IlanDetayState extends State<IlanDetay> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 55, top: 44),
-                    child: Text("Son 4 kişi"),
+                    child: Text("Son " + widget.kisisayi + " kişi"),
                   ),
                 ],
               ),
-            )
+            ),
 
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Text("22/06/2020"),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                SizedBox(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Başvuru yap"),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: height * 3 / 100,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Text("İlan Başlığı"),
-              SizedBox(
-                width: width * 4 / 100,
-              ),
-              SizedBox(),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("Favoriye ekle"),
-              ),
-            ]),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Text("Aranan yetenekler"),
-              SizedBox(
-                width: width * 4 / 100,
-              ),
-              SizedBox(),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("Mesaj gönder"),
-              ),
-            ]),
+
           ],
         ),
       ),
