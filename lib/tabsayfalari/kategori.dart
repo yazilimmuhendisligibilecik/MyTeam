@@ -17,19 +17,16 @@ class _KategoriState extends State<Kategori> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: 300,
+          expandedHeight: 200,
           floating: false,
           pinned: true,
-          backgroundColor: Colors.orange,
           flexibleSpace: FlexibleSpaceBar(
-            title: Text("Kategoriler"),
-            centerTitle: true,
-            background: Container(
-              width: width,
-              height: 250,
-              color: Colors.red,
-            ),
-          ),
+              title: Text("Kategoriler"),
+              centerTitle: true,
+              background: Image.network(
+                "https://miro.medium.com/max/700/1*HLGtY6O2vUHqIyEbWdmBgA.jpeg",
+                fit: BoxFit.fill,
+              )),
         ),
         SliverPadding(
           padding: EdgeInsets.only(top: 14.0),
@@ -44,9 +41,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "Flutter",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/flutter.png",
                     itemcolor: Colors.blue,
                     itemname: "Flutter",
                   ),
@@ -58,9 +56,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "Java",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/java.png",
                     itemcolor: Colors.blue,
                     itemname: "Java",
                   ),
@@ -72,9 +71,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "C#",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/c#.png",
                     itemcolor: Colors.blue,
                     itemname: "C#",
                   ),
@@ -86,9 +86,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "Python",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/python.png",
                     itemcolor: Colors.blue,
                     itemname: "Python",
                   ),
@@ -100,9 +101,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "Php",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/php.png",
                     itemcolor: Colors.blue,
                     itemname: "Php",
                   ),
@@ -114,9 +116,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "Visual Basic",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/visualbasic.png",
                     itemcolor: Colors.blue,
                     itemname: "Visual Basic",
                   ),
@@ -128,9 +131,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "C",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/c.png",
                     itemcolor: Colors.blue,
                     itemname: "C",
                   ),
@@ -142,9 +146,10 @@ class _KategoriState extends State<Kategori> {
                         MaterialPageRoute(
                             builder: (context) => KategoriDetay(
                                   kategori: "C++",
-                              )));
+                                )));
                   },
                   child: Griditem(
+                    dosyayolu: "lib/assets/c++.png",
                     itemcolor: Colors.blue,
                     itemname: "C++",
                   ),
@@ -160,10 +165,12 @@ class _KategoriState extends State<Kategori> {
 class Griditem extends StatelessWidget {
   final String itemname;
   final Color itemcolor;
+  final String dosyayolu;
   const Griditem({
     Key key,
     @required this.itemname,
     @required this.itemcolor,
+    this.dosyayolu,
   }) : super(key: key);
 
   @override
@@ -173,10 +180,17 @@ class Griditem extends StatelessWidget {
       child: Container(
           color: itemcolor,
           child: Center(
-              child: Text(
-            itemname,
-            style: TextStyle(fontSize: 22),
-          ))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  itemname,
+                  style: TextStyle(fontSize: 22),
+                ),
+                Image.asset(dosyayolu),
+              ],
+            ),
+          )),
     );
   }
 }

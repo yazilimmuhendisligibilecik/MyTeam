@@ -31,7 +31,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                 child: TextField(
                   controller: _emailcontroller,
                   decoration: InputDecoration(
-                    hintText: "Kullanıcı Adı",
+                    hintText: "E-mail giriniz",
                     hintStyle: TextStyle(color: Colors.red),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 1.0),
@@ -46,7 +46,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                 child: TextField(
                   controller: _passwordcontroller,
                   decoration: InputDecoration(
-                    hintText: "Kullanıcı Adı",
+                    hintText: "Şifre giriniz",
                     hintStyle: TextStyle(color: Colors.red),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 1.0),
