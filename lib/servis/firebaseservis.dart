@@ -29,7 +29,7 @@ class Firebaseservis extends ChangeNotifier {
     _usermodel = _userfromfirebase(kullanici);
     if (_usermodel != null) {
       DocumentSnapshot kimlik =
-          await _store.collection("users").doc(_usermodel.userID).get();
+      await _store.collection("users").doc(_usermodel.userID).get();
       Map gelendata = kimlik.data();
       _usermodel = Usermodel.toObj(gelendata);
     }
@@ -72,7 +72,7 @@ class Firebaseservis extends ChangeNotifier {
       GoogleSignInAccount _googleuser = await _googlesignin.signIn();
       if (_googleuser != null) {
         GoogleSignInAuthentication _googleauth =
-            await _googleuser.authentication;
+        await _googleuser.authentication;
         if (_googleauth.idToken != null && _googleauth.accessToken != null) {
           UserCredential userx = await _auth.signInWithCredential(
               GoogleAuthProvider.credential(
@@ -119,7 +119,7 @@ class Firebaseservis extends ChangeNotifier {
 
   Future verilerioku(Usermodel myusermodel) async {
     DocumentSnapshot kimlik =
-        await _store.collection("users").doc(myusermodel.userID).get();
+    await _store.collection("users").doc(myusermodel.userID).get();
     Map gelendata = kimlik.data();
     var veriler = Usermodel.toObj(gelendata);
     print(veriler.toString());
@@ -132,15 +132,14 @@ class Firebaseservis extends ChangeNotifier {
   }
 
   Stream<List<Ilanlar>> ilanlarigetir() {
-    //Anasayfa için
+    //Anasayfa iÃ§in
     Stream<QuerySnapshot> ilanlar = _store.collection("ilanlar").snapshots();
 
     var yeniilan = ilanlar.map((ilanliste) =>
         ilanliste.docs.map((e) => Ilanlar.toObj(e.data())).toList());
-    
+
     return yeniilan;
   }
-
 
   Stream kategorigetir(String kategori) {
     var gelenkategori = _store
